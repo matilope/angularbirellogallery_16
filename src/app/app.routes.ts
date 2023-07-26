@@ -7,11 +7,11 @@ import { InstagramService } from '@shared/services/instagram.service';
 import { PaintingsService } from '@shared/services/paintings.service';
 
 export const routes: Routes = [
-  { path: '', pathMatch: "full", loadComponent: () => import('@modules/users/home/pages/home.component').then(m => m.HomeComponent), title: 'Artworks', data: { preload: true } },
-  { path: 'miscellaneous', loadComponent: () => import('@modules/users/miscellaneous/pages/miscellaneous.component').then(m => m.MiscellaneousComponent), title: 'Miscellaneous', data: { preload: true }, resolve: { token: TokenResolve }, providers: [InstagramService] },
+  { path: '', pathMatch: "full", loadComponent: () => import('@modules/users/home/pages/home.component').then(m => m.HomeComponent), title: 'Artworks' },
+  { path: 'miscellaneous', loadComponent: () => import('@modules/users/miscellaneous/pages/miscellaneous.component').then(m => m.MiscellaneousComponent), title: 'Miscellaneous', resolve: { token: TokenResolve }, providers: [InstagramService] },
   { path: 'about', loadComponent: () => import('@modules/users/about/pages/about.component').then(m => m.AboutComponent), title: 'About' },
   { path: 'contact', loadComponent: () => import('@modules/users/contact/pages/contact.component').then(m => m.ContactComponent), title: 'Contact', resolve: { paintings: PaintingsResolve }, providers: [PaintingsService] },
-  { path: 'painting/view/:id', loadComponent: () => import('@modules/users/painting/pages/painting.component').then(m => m.PaintingComponent), data: { preload: true }, resolve: { painting: PaintingResolve }, providers: [PaintingsService] },
+  { path: 'painting/view/:id', loadComponent: () => import('@modules/users/painting/pages/painting.component').then(m => m.PaintingComponent), resolve: { painting: PaintingResolve }, providers: [PaintingsService] },
   { path: 'admin/create', canActivate: [AuthGuard], loadComponent: () => import('@modules/admin/painting-new/pages/painting-new.component').then(m => m.PaintingNewComponent), title: 'Create New Painting' },
   { path: 'admin/update/:id', canActivate: [AuthGuard], loadComponent: () => import('@modules/admin/painting-update/pages/painting-update.component').then(m => m.PaintingUpdateComponent), title: 'Update Painting', resolve: { painting: PaintingResolve }, providers: [PaintingsService] },
   { path: 'privacypolicy', loadComponent: () => import('@modules/users/privacypolicy/pages/privacypolicy.component').then(m => m.PrivacypolicyComponent), title: 'Privacy Policy' },
