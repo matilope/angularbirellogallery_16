@@ -1,0 +1,63 @@
+<section class="container">
+  <div class="header-container text-center">
+    <div>
+      <header>
+        <h1>Create new painting</h1>
+      </header>
+      <p>Title, subtitle, description, main image, dimension and characteristics are required</p>
+    </div>
+  </div>
+  <form (ngSubmit)="onSubmit();" [formGroup]="formGroup" enctype="multipart/form-data">
+    <span class="p-float-label mb-5">
+      <input type="text" id="title" name="title" formControlName="title" pInputText required />
+      <label for="title">Title *</label>
+    </span>
+    <span class="p-float-label mb-5">
+      <input type="text" id="subtitle" name="subtitle" formControlName="subtitle" pInputText required />
+      <label for="subtitle">Subtitle *</label>
+    </span>
+    <span class="p-float-label mb-5">
+      <textarea name="description" id="description" rows="4" formControlName="description" pInputTextarea
+        required></textarea>
+      <label for="description">Description *</label>
+    </span>
+    <span class="p-float-label mb-5">
+      <input type="text" id="dimension" name="dimension" formControlName="dimension" pInputText required />
+      <label for="dimension">Dimension *</label>
+    </span>
+    <span class="p-float-label mb-5">
+      <input type="text" id="characteristics" name="characteristics" formControlName="characteristics" pInputText
+        required />
+      <label for="characteristics">Characteristics *</label>
+    </span>
+    <span class="p-float-label mb-5">
+      <input type="link" id="link" name="link" formControlName="link" pInputText />
+      <label for="link">Link</label>
+    </span>
+    <span class="p-float-label mb-5">
+      <input type="link" id="link2" name="link2" formControlName="link2" pInputText />
+      <label for="link2">Secondary link</label>
+    </span>
+    <div class="upload-container">
+      <div>
+        <input type="file" (change)="onFileSelected($event, 0)" accept="image/*" id="image0url" name="image0url"
+          formControlName="image0url" required />
+        <label for="image0url"><i class="pi pi-image"></i></label>
+      </div>
+      <div>
+        <input type="file" (change)="onFileSelected($event, 1)" accept="image/*" id="image1url" name="image1url" />
+        <label for="image1url"><i class="pi pi-image"></i></label>
+      </div>
+      <div>
+        <input type="file" (change)="onFileSelected($event, 2)" accept="image/*" id="image2url" name="image2url" />
+        <label for="image2url"><i class="pi pi-image"></i></label>
+      </div>
+    </div>
+    <button type="submit" class="custom-btn" [disabled]="formGroup.invalid">
+      Create
+      <p-progressSpinner *ngIf="loader" class="custom-spinner" strokeWidth="6"
+        styleClass="custom-spinner"></p-progressSpinner>
+    </button>
+  </form>
+</section>
+<p-toast *ngIf="isBrowser" [breakpoints]="{'768px': {width: '100%', right: '0', left: '0'}}"></p-toast>

@@ -1,0 +1,62 @@
+<section class="container">
+  <div class="header-container text-center">
+    <div>
+      <header>
+        <h2>About us</h2>
+      </header>
+      <div class="about-container">
+        <p>Birello Gallery is an emerging familiar business searching for the best products thinking in quality, value
+          and exquisiteness. The products we offer not only delight customers regarding decorative value but also
+          considering art itself as an investment for the future.</p>
+        <p-carousel class="custom-carousel" [value]="images" [numVisible]="3" [responsiveOptions]="responsiveOptions">
+          <ng-template let-item pTemplate="item">
+            <img [src]="item.image" [alt]="item.alt" />
+          </ng-template>
+        </p-carousel>
+      </div>
+    </div>
+  </div>
+  <div class="flex">
+    <h3>Returning identity to unappraised artworks</h3>
+    <p>
+      Birello gallery is run by Ignacio Birello, born in Buenos Aires
+      during 1997. He is one of the youngest art dealers in the world,
+      having studied business administration at UBA and art valuation at
+      ESNECA. Without any parental background in the field of art and
+      antiques, he focuses primarily on european artworks from the 16th
+      century until the 19th century. Despite beginning to collect and
+      deal with french porcelain, his passion for paintings is undisputed.
+      Focusing on South American collections due to immigration waves from
+      the prior centuries, he often reaches artworks to the European
+      market either as an anonymous seller or representing Birello
+      Gallery. Let's enjoy the journey!
+    </p>
+  </div>
+  <div class="flex">
+    <div class="card-benefits">
+      <div>
+        <i class="pi pi-gift"></i>
+        <p>
+          Expert packaging for secure delivery. Premium materials and techniques ensure paintings arrive undamaged.
+          Attention to detail and customized solutions for professional presentation. Artwork's safety and security are
+          top priority.
+        </p>
+      </div>
+      <div>
+        <i class="pi pi-globe"></i>
+        <p>
+          Discover art without boundaries. Our global platform connects art enthusiasts worldwide, providing access to a
+          diverse collection. From Europe to America, Asia to beyond, we ship internationally, ensuring everyone can
+          experience our inspiring artworks.
+        </p>
+      </div>
+      <div>
+        <i class="pi pi-palette"></i>
+        <p>
+          Embark on an enchanting voyage through the ages at our prestigious gallery, showcasing exquisite works of art
+          from bygone eras. Immerse yourself in the timeless elegance of our collection and uncover the captivating
+          narratives woven into each piece.
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,24 @@
+<section class="container">
+  <div class="header-container text-center">
+    <div>
+      <header>
+        <h2>Instagram of Birello Gallery</h2>
+      </header>
+      <p>Follow and contact us anytime you want</p>
+    </div>
+  </div>
+  <div class="flex">
+    <div class="card" *ngFor="let pub of insta; let i = index; let last = last">
+      <a [href]="pub.permalink">
+        <img class="card-img" [src]="pub.media_url" [alt]="pub.username" />
+        <p class="centered">{{ pub.caption }}</p>
+      </a>
+      <div *ngIf="last" #theLastList></div>
+    </div>
+  </div>
+</section>
+
+<div class="spinner" *ngIf="loader">
+  <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)"
+    animationDuration=".5s"></p-progressSpinner>
+</div>

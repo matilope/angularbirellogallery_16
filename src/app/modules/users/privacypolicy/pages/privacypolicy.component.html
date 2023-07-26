@@ -1,0 +1,33 @@
+<section class="container">
+  <div class="header-container text-center">
+    <div>
+      <header>
+        <h2>Privacy policy</h2>
+      </header>
+    </div>
+  </div>
+  <div class="flex">
+    <p-accordion class="custom-accordion" [activeIndex]="i" *ngFor="let privacy of privacys; let i = index;">
+      <p-accordionTab [header]="privacy.title">
+        <p *ngIf="privacy.paragraph">
+          {{ privacy.paragraph }}
+        </p>
+        <p *ngIf="privacy.paragraph2">
+          {{ privacy.paragraph2 }}
+        </p>
+        <p *ngIf="privacy.paragraph3">
+          {{ privacy.paragraph3 }}
+        </p>
+        <p *ngIf="privacy.paragraph4">
+          {{ privacy.paragraph4 }}
+        </p>
+        <p *ngIf="privacy.paragraph5">
+          {{ privacy.paragraph5 }}
+        </p>
+        <p *ngIf="privacy.paragraph6">
+          {{ privacy.paragraph6 }}
+        </p>
+      </p-accordionTab>
+    </p-accordion>
+  </div>
+</section>

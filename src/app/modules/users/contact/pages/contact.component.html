@@ -1,0 +1,37 @@
+<section class="container">
+  <div class="header-container text-center">
+    <div>
+      <header>
+        <h2>Contact</h2>
+      </header>
+      <p>+54-911-6481-6622 | ignaciobirello@hotmail.com</p>
+    </div>
+  </div>
+  <form (ngSubmit)="contactForm()" [formGroup]="formGroup">
+    <span class="p-float-label mb-5">
+      <input type="text" id="name" name="name" formControlName="name" pInputText required />
+      <label for="name">Name *</label>
+    </span>
+    <span class="p-float-label mb-5">
+      <input type="email" id="email" name="email" formControlName="email" pInputText required />
+      <label for="email">Email address *</label>
+    </span>
+    <span class="p-float-label mb-5">
+      <input type="text" id="subject" name="subject" formControlName="subject" pInputText required />
+      <label for="subject">Subject *</label>
+    </span>
+    <div class="mb-5">
+      <p-dropdown styleClass="custom-dropdown" name="paint" id="paint" [options]="titles" formControlName="paint"></p-dropdown>
+    </div>
+    <span class="p-float-label mb-5">
+      <textarea name="textarea" id="textarea" rows="4" formControlName="textarea" pInputTextarea required></textarea>
+      <label for="textarea">Message *</label>
+    </span>
+    <button type="submit" class="custom-btn" [disabled]="formGroup.invalid" pRipple>
+      Submit
+      <p-progressSpinner *ngIf="loader" class="custom-spinner" strokeWidth="6"
+        styleClass="custom-spinner"></p-progressSpinner>
+    </button>
+  </form>
+</section>
+<p-toast *ngIf="isBrowser" [breakpoints]="{'768px': {width: '100%', right: '0', left: '0'}}"></p-toast>

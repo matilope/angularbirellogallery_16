@@ -1,0 +1,30 @@
+<section class="container">
+  <div class="header-container text-center">
+    <div>
+      <header>
+        <h1>Edit portrait</h1>
+      </header>
+      <p>You can edit the portrait</p>
+    </div>
+  </div>
+  <form (ngSubmit)="onSubmit();" [formGroup]="formGroup" *ngIf="portrait" enctype="multipart/form-data">
+    <span class="p-float-label mb-5">
+      <input type="text" id="title" name="title" formControlName="title" pInputText required />
+      <label for="title">Title</label>
+    </span>
+    <div class="upload-container-portrait">
+      <img [src]="portrait.image0url" [alt]="portrait.title" />
+      <div>
+        <input type="file" (change)="onFileSelected($event)" accept="image/*" id="image0url" name="image0url"
+          formControlName="image0url" />
+        <label for="image0url">Change portrait <i class="pi pi-image"></i></label>
+      </div>
+    </div>
+    <button type="submit" class="custom-btn" [disabled]="formGroup.invalid">
+      Update
+      <p-progressSpinner *ngIf="loader" class="custom-spinner" strokeWidth="6" styleClass="custom-spinner"></p-progressSpinner>
+    </button>
+  </form>
+  <a class="go-back" routerLink="/admin">Go back</a>
+</section>
+<p-toast *ngIf="isBrowser" [breakpoints]="{'768px': {width: '100%', right: '0', left: '0'}}"></p-toast>

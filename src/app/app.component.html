@@ -1,0 +1,6 @@
+<app-header></app-header>
+<main #animationRoute>
+  <router-outlet></router-outlet>
+</main>
+<p-scrollTop *ngIf="isBrowser" [threshold]="200"></p-scrollTop>
+<app-footer></app-footer>

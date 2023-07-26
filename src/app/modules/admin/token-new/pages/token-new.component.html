@@ -1,0 +1,22 @@
+<section class="container">
+  <div class="header-container text-center">
+    <div>
+      <header>
+        <h1>Create new Instagram token</h1>
+      </header>
+    </div>
+  </div>
+  <form (ngSubmit)="onSubmit();" [formGroup]="formGroup">
+    <span class="p-float-label mb-5">
+      <input type="text" id="token" name="token" formControlName="token" [value]="token" pInputText required />
+      <label for="token">Token</label>
+    </span>
+    <button type="submit" class="custom-btn" [disabled]="formGroup.invalid">
+      Create
+      <p-progressSpinner *ngIf="loader" class="custom-spinner" strokeWidth="6"
+        styleClass="custom-spinner"></p-progressSpinner>
+    </button>
+  </form>
+  <a class="go-back" routerLink="/admin">Go back</a>
+</section>
+<p-toast *ngIf="isBrowser" [breakpoints]="{'768px': {width: '100%', right: '0', left: '0'}}"></p-toast>

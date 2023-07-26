@@ -1,0 +1,44 @@
+<section class="container">
+  <div class="header-container text-center">
+    <div>
+      <header>
+        <h1>Administration panel</h1>
+      </header>
+      <p>You will be able to create, edit and delete your paintings</p>
+    </div>
+  </div>
+  <div class="flex flex-center" *ngIf="portrait && token">
+    <a [routerLink]="['/admin/create']" class="custom-btn">Create painting</a>
+    <a [routerLink]="['/admin/change/portrait/', portrait._id]" class="custom-btn">
+      Change portrait
+    </a>
+    <a class="custom-btn" [routerLink]="['/admin/change/token/', token._id]">
+      Refresh token
+    </a>
+    <a [routerLink]="['/admin/show/users']" class="custom-btn">
+      Registered users
+    </a>
+  </div>
+  <div class="flex flex-admin">
+    <div class="card-admin" *ngFor="let painting of paintings; let i = index;">
+      <div>
+        <img appImgBroken class="card-img-top cardmainimg" [src]="painting.image0url" [alt]="painting.title" />
+      </div>
+      <div class="card-admin-info">
+        <p>{{painting.title}}</p>
+        <p>{{painting.subtitle}}</p>
+      </div>
+      <div class="btn-container">
+        <a [routerLink]="['/admin/update/', painting._id]" class="custom-btn btn-update">Edit</a>
+        <button (click)="delete(painting._id, i);" class="custom-btn btn-delete">
+          Delete
+          <p-progressSpinner *ngIf="loaders[i]" class="custom-spinner" strokeWidth="6"
+            styleClass="custom-spinner"></p-progressSpinner>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+<p-toast *ngIf="isBrowser" [breakpoints]="{'768px': {width: '100%', right: '0', left: '0'}}"></p-toast>
+<p-confirmDialog *ngIf="isBrowser" [breakpoints]="{'768px': {width: '100%', right: '0', left: '0'}}">
+</p-confirmDialog>

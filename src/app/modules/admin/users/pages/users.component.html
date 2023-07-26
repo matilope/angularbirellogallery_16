@@ -1,0 +1,27 @@
+<section class="container">
+  <div class="header-container text-center">
+    <div>
+      <header>
+        <h1>Registered users</h1>
+      </header>
+    </div>
+  </div>
+  <div class="flex flex-admin">
+    <div class="card-admin" *ngFor="let user of users; let i = index">
+      <div class="card-admin-info">
+        <p>{{user.email}}</p>
+      </div>
+      <div class="btn-container">
+        <button (click)="deleteUser(user._id, i)" class="custom-btn btn-delete">
+          Borrar usuario
+          <p-progressSpinner *ngIf="loaders[i]" class="custom-spinner" strokeWidth="6"
+            styleClass="custom-spinner"></p-progressSpinner>
+        </button>
+      </div>
+    </div>
+  </div>
+  <a class="go-back" routerLink="/admin">Go back</a>
+</section>
+<p-toast *ngIf="isBrowser" [breakpoints]="{'768px': {width: '100%', right: '0', left: '0'}}"></p-toast>
+<p-confirmDialog *ngIf="isBrowser" [breakpoints]="{'768px': {width: '100%', right: '0', left: '0'}}">
+</p-confirmDialog>

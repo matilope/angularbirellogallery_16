@@ -1,0 +1,41 @@
+form {
+  width: 600px;
+
+  ::ng-deep .custom-pw {
+    div {
+      width: 100%;
+
+      input {
+        width: 100%;
+        background-color: white;
+        border: 2px solid #f2f2e2;
+        color: black;
+
+        &:hover {
+          border-color: #655c28;
+        }
+
+        &:focus {
+          border-color: #655c28;
+          box-shadow: 0 0 0 0.2rem #fef5bf;
+        }
+      }
+
+      i {
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  input {
+    background-color: white;
+    border: 2px solid #f2f2e2;
+    color: black;
+  }
+
+  label {
+    color: black;
+  }
+}

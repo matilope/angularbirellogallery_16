@@ -1,0 +1,52 @@
+<section class="container" *ngIf="painting">
+  <div class="painting-container">
+    <div class="img-section">
+      <img appImgBroken [src]="imageSelected" [alt]="painting.title" />
+      <div class="img-container">
+        <img (click)="changeImage(0);" [class]="imageSelected === painting.image0url ? 'active' : ''" appImgBroken
+          *ngIf="painting.image1url || painting.image2url" [src]="painting.image0url" [alt]="painting.title" />
+        <img (click)="changeImage(1);" [class]="imageSelected === painting.image0url ? 'active' : ''"
+          *ngIf="painting.image1url" [src]="painting.image1url" [alt]="painting.title" />
+        <img (click)="changeImage(2);" [class]="imageSelected === painting.image0url ? 'active' : ''"
+          *ngIf="painting.image2url" [src]="painting.image2url" [alt]="painting.title" />
+      </div>
+    </div>
+    <div class="info-container">
+      <h2>{{painting.title}}</h2>
+      <p>{{painting.subtitle}}</p>
+      <div class="accordion-container">
+        <p-accordion class="custom-accordion">
+          <p-accordionTab header="Dimension">
+            <p>
+              {{painting.dimension}}
+            </p>
+          </p-accordionTab>
+        </p-accordion>
+        <p-accordion class="custom-accordion">
+          <p-accordionTab header="Characteristics">
+            <p>
+              {{painting.characteristics}}
+            </p>
+          </p-accordionTab>
+        </p-accordion>
+        <p-accordion *ngIf="painting.link.length > 1" class="custom-accordion">
+          <p-accordionTab header="Similar works">
+            <ul>
+              <li><a [href]="painting.link" target="_blank">{{link}}</a></li>
+              <li *ngIf="painting.link2"><a [href]="painting.link2" target="_blank">{{link2}}</a></li>
+            </ul>
+          </p-accordionTab>
+        </p-accordion>
+        <p-accordion class="custom-accordion">
+          <p-accordionTab header="Description">
+            <p class="description">
+              {{painting.description}}
+            </p>
+          </p-accordionTab>
+        </p-accordion>
+      </div>
+      <a href="https://wa.me/5491164816622" class="custom-btn">Enquire</a>
+    </div>
+  </div>
+</section>
+<div [innerHTML]="html"></div>

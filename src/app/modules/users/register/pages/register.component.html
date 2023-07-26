@@ -1,0 +1,26 @@
+<section class="container">
+  <div class="header-container text-center">
+    <div>
+      <header>
+        <h1>Register</h1>
+      </header>
+    </div>
+  </div>
+  <form #form="ngForm" (ngSubmit)="registerUser(form);">
+    <span class="p-float-label mb-5">
+      <input type="email" id="email" name="email" [(ngModel)]="registerUserData.email" pInputText required />
+      <label for="email">Email</label>
+    </span>
+    <span class="p-float-label mb-5">
+      <p-password class="custom-pw" id="password" name="password" [(ngModel)]="registerUserData.password"
+        [toggleMask]="true" required></p-password>
+      <label for="password">Password</label>
+    </span>
+    <button type="submit" class="custom-btn" [disabled]="form.invalid">
+      Register
+      <p-progressSpinner *ngIf="loader" class="custom-spinner" strokeWidth="6"
+      styleClass="custom-spinner"></p-progressSpinner>
+    </button>
+  </form>
+</section>
+<p-toast [breakpoints]="{'768px': {width: '100%', right: '0', left: '0'}}"></p-toast>

@@ -1,0 +1,50 @@
+footer {
+  background: linear-gradient(to top right, #242424, #303030, #242424);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 2px solid #5c5c5c;
+
+  .social-icons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+
+    .pi {
+      font-size: 1.75rem;
+    }
+  }
+
+  .menu {
+    display: flex;
+    gap: 2rem;
+    margin: 2rem 0 1rem 0;
+
+    @media (max-width:575px) {
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    li {
+      a {
+        &:hover {
+          font-weight: bold;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .copyright {
+    padding: 2rem 0 1rem 0;
+    border-top: 2px solid #5c5c5c;
+    text-align: center;
+
+    @media (max-width:575px) {
+      padding: 1.5rem 0 1rem;
+      line-height: 1.5rem;
+    }
+  }
+}
