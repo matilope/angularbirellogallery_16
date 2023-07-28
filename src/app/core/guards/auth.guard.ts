@@ -1,13 +1,25 @@
+import { CanActivateFn } from '@angular/router';
+import { AuthService } from '@shared/services/auth.service';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '@shared/services/auth.service';
+import { Validation } from '@core/models/validation';
 
-export const AuthGuard = (): boolean => {
+export const AuthGuard: CanActivateFn = () => {
   const router = inject(Router);
   const _authService = inject(AuthService);
-  if (!_authService.loggedIn()) {
-    router.navigate(['/404']);
-    return false;
-  }
-  return true;
+  let state = true;
+  _authService.loggedIn().subscribe({
+    next: (response: Validation) => {
+      if (response.code == 401) {
+        router.navigate(['/404']);
+        state = false;
+      } else {
+        state = true;
+      }
+    },
+    error: () => {
+      state = false;
+    }
+  });
+  return state;
 }

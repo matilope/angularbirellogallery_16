@@ -5,6 +5,7 @@ import { PortraitService } from '@shared/services/portrait.service';
 import { Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '@shared/services/auth.service';
+import { Code, Validation } from '@core/models/validation';
 
 @Component({
   selector: 'app-header',
@@ -19,7 +20,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   public path!: string;
   public portrait!: Portrait;
   public routerEvent: Subscription;
-  public isLoggedIn!: Boolean | void;
+  public isLoggedIn!: Code;
   public subscription!: Subscription;
   public excludedPaths: string[] = ['404', 'admin'];
 
@@ -46,7 +47,11 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       }
     });
-    this.isLoggedIn = this._authService.loggedIn();
+    this._authService.loggedIn().subscribe({
+      next: (response: Validation) => {
+        this.isLoggedIn = response.code;
+      }
+    });
   }
 
   ngAfterViewInit(): void {

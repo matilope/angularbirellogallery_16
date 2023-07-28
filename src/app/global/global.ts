@@ -1,3 +1,3 @@
 export const Global = {
-  url: 'https://backbirellogallery.vercel.app/api/',
+  url: 'http://localhost:3000/api/',
 };

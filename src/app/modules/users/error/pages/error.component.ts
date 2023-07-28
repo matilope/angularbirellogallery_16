@@ -3,7 +3,8 @@ import {
   OnInit,
   PLATFORM_ID,
   Optional,
-  inject
+  inject,
+  Inject
 } from '@angular/core';
 import { RESPONSE } from '@nguniversal/express-engine/tokens';
 import { Meta } from '@angular/platform-browser';
@@ -21,7 +22,7 @@ export class ErrorComponent implements OnInit {
   private platformId: object = inject(PLATFORM_ID);
   private metaService: Meta = inject(Meta);
   private router: Router = inject(Router);
-  @Optional() private response: Response = inject(RESPONSE);
+  @Optional() @Inject(RESPONSE) private response: Response;
 
   constructor() {
     this.metaService.addTag({

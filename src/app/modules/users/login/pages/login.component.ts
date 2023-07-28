@@ -13,6 +13,7 @@ import { ToastModule } from 'primeng/toast';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { NgForm } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -33,6 +34,7 @@ export class LoginComponent implements OnDestroy {
   private router: Router = inject(Router);
   private metaService: Meta = inject(Meta);
   private platformId: object = inject(PLATFORM_ID);
+  private _cookieService: CookieService = inject(CookieService);
 
   constructor() {
     this.isBrowser = isPlatformBrowser(this.platformId);
@@ -53,7 +55,7 @@ export class LoginComponent implements OnDestroy {
       this.subscription = this._auth.loginUser(this.loginUserData).subscribe({
         next: (response: UserObservable) => {
           if (response.status == 'Success') {
-            localStorage.setItem(environment.token, response.token);
+            this._cookieService.set(environment.token, response.token, 14, "/", "", true, 'Strict');
             this.loader = false;
             this._messageService.add({ severity: 'success', summary: 'Success', detail: 'The login credentials provided are correct' });
             setTimeout(() => {

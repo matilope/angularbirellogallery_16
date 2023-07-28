@@ -12,6 +12,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { FormsModule, NgForm } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-register',
@@ -32,6 +33,7 @@ export class RegisterComponent implements OnDestroy {
   private router: Router = inject(Router);
   private metaService: Meta = inject(Meta);
   private platformId: object = inject(PLATFORM_ID);
+  private _cookieService: CookieService = inject(CookieService);
 
   constructor() {
     this.isBrowser = isPlatformBrowser(this.platformId);
@@ -53,8 +55,8 @@ export class RegisterComponent implements OnDestroy {
         .subscribe({
           next: response => {
             if (response.status == 'Success') {
-              localStorage.setItem(environment.token, response.token);
               this.loader = false;
+              this._cookieService.set(environment.token, response.token, 14, "/", "", true, 'Strict');
               this._messageService.add({ severity: 'success', summary: 'Success', detail: 'User was successfully created' });
               setTimeout(() => {
                 this.router.navigate(['/admin']);
