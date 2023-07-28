@@ -59,7 +59,11 @@ export class LoginComponent implements OnDestroy {
             this.loader = false;
             this._messageService.add({ severity: 'success', summary: 'Success', detail: 'The login credentials provided are correct' });
             setTimeout(() => {
-              this.router.navigate(['/admin']);
+              this.router.navigate(['/admin']).then(() => {
+                if ((isPlatformBrowser(this.platformId))) {
+                  window.location.reload();
+                }
+              });
             }, 1500);
           } else {
             this.loader = false;

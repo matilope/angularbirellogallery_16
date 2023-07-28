@@ -1,11 +1,4 @@
-import {
-  Component,
-  OnInit,
-  PLATFORM_ID,
-  Optional,
-  inject,
-  Inject
-} from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, Optional, inject, Inject } from '@angular/core';
 import { RESPONSE } from '@nguniversal/express-engine/tokens';
 import { Meta } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -32,8 +25,9 @@ export class ErrorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (isPlatformServer(this.platformId)) {
-      this.response.status(410);
+    if (isPlatformServer(this.platformId) && this.response) {
+      this.response?.status(410);
+      this.response.statusCode = 410;
     }
     setTimeout(() => {
       this.router.navigate(['/']);

@@ -42,6 +42,10 @@ export class AuthService {
     }
   }
 
+  cookieExists(): boolean {
+    return this._cookieService.check(environment.token);
+  }
+
   loggedIn(): Observable<Validation> {
     return this._http.get<Validation>(this.url + 'validation');
   }

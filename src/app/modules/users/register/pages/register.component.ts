@@ -59,7 +59,11 @@ export class RegisterComponent implements OnDestroy {
               this._cookieService.set(environment.token, response.token, 14, "/", "", true, 'Strict');
               this._messageService.add({ severity: 'success', summary: 'Success', detail: 'User was successfully created' });
               setTimeout(() => {
-                this.router.navigate(['/admin']);
+                this.router.navigate(['/admin']).then(() => {
+                  if ((isPlatformBrowser(this.platformId))) {
+                    window.location.reload();
+                  }
+                });
               }, 1500);
             } else {
               this.loader = false;

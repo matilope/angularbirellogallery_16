@@ -2,24 +2,31 @@ import { CanActivateFn } from '@angular/router';
 import { AuthService } from '@shared/services/auth.service';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { catchError, map, of, switchMap } from 'rxjs';
 import { Validation } from '@core/models/validation';
 
 export const AuthGuard: CanActivateFn = () => {
   const router = inject(Router);
   const _authService = inject(AuthService);
-  let state = true;
-  _authService.loggedIn().subscribe({
-    next: (response: Validation) => {
-      if (response.code == 401) {
-        router.navigate(['/404']);
-        state = false;
+  return _authService.loggedIn().pipe(
+    switchMap((response: Validation) => {
+      if (response?.code === 200) {
+        return of(true);
       } else {
-        state = true;
+        router.navigate(['/404']);
+        return of(false);
       }
-    },
-    error: () => {
-      state = false;
-    }
-  });
-  return state;
+    }),
+    catchError((error: any) => {
+      console.error('Unauthorized', error);
+      router.navigate(['/404']);
+      return of(false);
+    }),
+    map((allowed: boolean) => {
+      if (!allowed) {
+        router.navigate(['/404']);
+      }
+      return allowed;
+    })
+  );
 }
