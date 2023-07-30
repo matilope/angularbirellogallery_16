@@ -1,7 +1,7 @@
 export interface PaintingsObservable {
   status: string,
   paints: Painting[],
-  results: Results
+  results?: Results
 }
 
 export interface PaintingObservable {

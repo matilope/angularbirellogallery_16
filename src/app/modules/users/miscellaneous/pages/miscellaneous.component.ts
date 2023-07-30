@@ -78,8 +78,8 @@ export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy 
     });
   }
 
-
   ngOnInit(): void {
+    this.intersectionObserver();
     this.loader = true;
     this.subscription = this.activatedRoute.data.subscribe({
       next: (response: any) => {
@@ -101,19 +101,18 @@ export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy 
         }
       }
     });
-    this.intersectionObserver();
   }
 
   ngAfterViewInit(): void {
-    this.subscription3 = this.theLastList.changes.subscribe({
-      next: (response) => {
-        if (response.last) {
-          if ((isPlatformBrowser(this.platformId))) {
+    if ((isPlatformBrowser(this.platformId))) {
+      this.subscription3 = this.theLastList.changes.subscribe({
+        next: (response) => {
+          if (response.last) {
             this.observer.observe(response.last.nativeElement);
           }
         }
-      }
-    });
+      });
+    }
   }
 
   intersectionObserver(): void {
@@ -123,31 +122,29 @@ export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy 
       threshold: 0
     };
 
-    if ((isPlatformBrowser(this.platformId))) {
-      this.observer = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-          if (this.data.length > 1) {
-            this.loader = true;
-            this.subscription4 = this._instagramService
-              .getInstagramNext(this.content, this.next)
-              .subscribe({
-                next: (response) => {
-                  this.loader = false;
-                  if (response.paging) {
-                    this.next = response.paging.cursors.after;
-                    this.data = response.data;
-                    response.data.forEach((e: any) => {
-                      this.insta.push(e);
-                    });
-                  } else {
-                    this.data = [];
-                  }
+    this.observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        if (this.data.length > 1) {
+          this.loader = true;
+          this.subscription4 = this._instagramService
+            .getInstagramNext(this.content, this.next)
+            .subscribe({
+              next: (response) => {
+                this.loader = false;
+                if (response.paging) {
+                  this.next = response.paging.cursors.after;
+                  this.data = response.data;
+                  response.data.forEach((e: any) => {
+                    this.insta.push(e);
+                  });
+                } else {
+                  this.data = [];
                 }
-              })
-          }
+              }
+            })
         }
-      }, options);
-    }
+      }
+    }, options);
   }
 
   ngOnDestroy(): void {

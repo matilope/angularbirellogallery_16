@@ -31,10 +31,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public currentPage: number = 1;
   public totalPages!: number;
-  @ViewChildren('theLastList', { read: ElementRef })
-  public theLastList!: QueryList<ElementRef>;
+  @ViewChildren('theLastList') public theLastList!: QueryList<ElementRef>;
 
-  private observer!: IntersectionObserver;
+  private observer!: IntersectionObserver;;
 
   public loader: boolean = false;
   public search: string = '';
@@ -52,6 +51,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.intersectionObserver();
     this.loader = true;
     this.subscription = this._paintingService
       .getPaintingsPagination(this.currentPage).subscribe({
@@ -63,7 +63,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
           }
         }
       });
-    this.intersectionObserver();
     this.search$
       .pipe(
         debounceTime(500),
@@ -74,7 +73,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
         if (searchTerm.length >= 3) {
           this.loader = true;
           this.subscription4 = this._paintingService.search(searchTerm).subscribe({
-            next: (response) => {
+            next: (response: PaintingsObservable) => {
               this.loader = false;
               if (response.status == 'Success' && response.paints.length > 0) {
                 this._messageService.add({ severity: 'success', summary: 'Success', detail: 'The search query has results' });
@@ -95,15 +94,15 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    this.subscription3 = this.theLastList.changes.subscribe({
-      next: (response) => {
-        if (response.last) {
-          if ((isPlatformBrowser(this.platformId))) {
+    if ((isPlatformBrowser(this.platformId))) {
+      this.subscription3 = this.theLastList.changes.subscribe({
+        next: (response) => {
+          if (response.last) {
             this.observer.observe(response.last.nativeElement);
           }
         }
-      }
-    });
+      });
+    }
   }
 
   trackByFn(index: number, item: Painting): string {
@@ -126,7 +125,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     this.subscription2 = this._paintingService
       .getPaintingsPagination(this.currentPage)
       .subscribe({
-        next: (response) => {
+        next: (response: PaintingsObservable) => {
           this.loader = false;
           response.paints.sort(() => {
             return 0.5 - Math.random();
@@ -141,20 +140,17 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   intersectionObserver(): void {
     let options = {
       root: null,
-      rootMargin: '0px',
-      threshold: 0
+      rootMargin: '4px',
+      threshold: 1
     };
-
-    if ((isPlatformBrowser(this.platformId))) {
-      this.observer = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-          if (this.currentPage < this.totalPages) {
-            this.currentPage++;
-            this.paintingsData();
-          }
+    this.observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        if (this.currentPage < this.totalPages) {
+          this.currentPage++;
+          this.paintingsData();
         }
-      }, options);
-    }
+      }
+    }, options);
   }
 
   ngOnDestroy(): void {
