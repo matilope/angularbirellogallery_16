@@ -29,7 +29,7 @@ export class PortraitComponent implements OnInit, OnDestroy {
   public subscription2!: Subscription;
   public subscription3!: Subscription;
   public selectedFile: File | null = null;
-  public loader: boolean = false;
+  public loader = false;
   public isBrowser!: boolean;
 
   private _portraitService: PortraitService = inject(PortraitService);
@@ -50,7 +50,7 @@ export class PortraitComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription2 = this.activatedRoute.params.subscribe(params => {
-      let portraitId = params['id'];
+      const portraitId = params['id'];
       this.subscription3 = this._portraitService
         .getPortrait(portraitId)
         .subscribe({

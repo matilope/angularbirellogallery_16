@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { PortraitObservable, PortraitsObservable } from '@core/models/portrait';
 import { Global } from '@global/global';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class PortraitService {
   public url: string;
   private _http: HttpClient = inject(HttpClient);

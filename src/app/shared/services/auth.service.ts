@@ -9,12 +9,12 @@ import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { Validation } from '@core/models/validation';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthService {
   public url: string;
   private _http: HttpClient = inject(HttpClient);
   private _router: Router = inject(Router);
-  private platformId: Object = inject(PLATFORM_ID);
+  private platformId: object = inject(PLATFORM_ID);
   private _cookieService: CookieService = inject(CookieService);
 
   constructor() {

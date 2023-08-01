@@ -1,6 +1,5 @@
 import { ApplicationConfig, importProvidersFrom, isDevMode } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { AuthService } from '@shared/services/auth.service';
 import { interceptor } from '@core/interceptors/interceptor.service';
 import { provideServiceWorker } from '@angular/service-worker';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
@@ -17,7 +16,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptors([
       interceptor
     ])),
-    AuthService,
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000'

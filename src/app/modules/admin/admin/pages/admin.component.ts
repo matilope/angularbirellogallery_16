@@ -20,7 +20,7 @@ import { ImgBrokenDirective } from '@shared/directives/img-broken.directive';
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss'],
-  providers: [PaintingsService, PortraitService, InstagramService, ConfirmationService, MessageService],
+  providers: [ConfirmationService, MessageService],
   standalone: true,
   imports: [RouterLink, NgIf, NgFor, ImgBrokenDirective, ToastModule, ConfirmDialogModule, ProgressSpinnerModule]
 })

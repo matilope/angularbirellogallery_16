@@ -16,7 +16,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
   selector: 'app-token-new',
   templateUrl: './token-new.component.html',
   styleUrls: ['./token-new.component.scss'],
-  providers: [InstagramService, MessageService],
+  providers: [MessageService],
   standalone: true,
   imports: [RouterLink, NgIf, ReactiveFormsModule, InputTextModule, ToastModule, ProgressSpinnerModule]
 })
@@ -25,7 +25,7 @@ export class TokenNewComponent implements OnInit, OnDestroy {
   public token!: Token;
   public url: string;
   public subscription!: Subscription;
-  public loader: boolean = false;
+  public loader = false;
   public isBrowser!: boolean;
 
   private _instagramService: InstagramService = inject(InstagramService);

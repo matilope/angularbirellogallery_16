@@ -11,9 +11,10 @@
     <div>
       <span class="p-input-icon-left">
         <i class="pi pi-search"></i>
-        <input class="i-search" type="text" pInputText [(ngModel)]="search" (input)="searchHttp();" placeholder="Search"
-          required />
-        <i *ngIf="search.length>0" class="pi pi-times" (click)="resetSearch();"></i>
+        <input class="i-search" type="text" pInputText [(ngModel)]="search" (keydown)="resetSearch($event);"
+          (input)="searchHttp();" placeholder="Search" required />
+        <i role="button" tabindex="0" *ngIf="search.length>0" class="pi pi-times" (keydown)="resetSearch($event);"
+          (click)="resetSearch($event);"></i>
       </span>
     </div>
   </div>

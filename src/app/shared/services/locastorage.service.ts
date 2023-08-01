@@ -3,7 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({ providedIn: 'root' })
 export class LocalStorageService {
-  private platformId: Object = inject(PLATFORM_ID);
+  private platformId: object = inject(PLATFORM_ID);
 
   clear(): void {
     if (isPlatformBrowser(this.platformId)) {

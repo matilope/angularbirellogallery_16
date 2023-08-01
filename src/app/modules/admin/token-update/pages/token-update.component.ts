@@ -16,7 +16,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
   selector: 'app-token-update',
   templateUrl: './token-update.component.html',
   styleUrls: ['./token-update.component.scss'],
-  providers: [InstagramService, MessageService],
+  providers: [MessageService],
   standalone: true,
   imports: [RouterLink, NgIf, ReactiveFormsModule, InputTextModule, ToastModule, ProgressSpinnerModule]
 })
@@ -28,7 +28,7 @@ export class TokenUpdateComponent implements OnInit, OnDestroy {
   public subscription!: Subscription;
   public subscription2!: Subscription;
   public subscription3!: Subscription;
-  public loader: boolean = false;
+  public loader = false;
   public isBrowser!: boolean;
 
   private _instagramService: InstagramService = inject(InstagramService);

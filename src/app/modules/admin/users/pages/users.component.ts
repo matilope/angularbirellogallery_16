@@ -15,7 +15,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss'],
-  providers: [AdminService, MessageService, ConfirmationService],
+  providers: [MessageService, ConfirmationService],
   standalone: true,
   imports: [RouterLink, NgIf, NgFor, ToastModule, ConfirmDialogModule, ProgressSpinnerModule]
 })

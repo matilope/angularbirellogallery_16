@@ -1,11 +1,11 @@
-import { CanActivateFn } from '@angular/router';
+import { CanMatchFn } from '@angular/router';
 import { AuthService } from '@shared/services/auth.service';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, map, of, switchMap } from 'rxjs';
 import { Validation } from '@core/models/validation';
 
-export const AuthGuard: CanActivateFn = () => {
+export const AuthGuard: CanMatchFn = () => {
   const router = inject(Router);
   const _authService = inject(AuthService);
   return _authService.loggedIn().pipe(

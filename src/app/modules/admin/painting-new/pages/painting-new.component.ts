@@ -17,7 +17,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
   selector: 'app-painting-new',
   templateUrl: './painting-new.component.html',
   styleUrls: ['./painting-new.component.scss'],
-  providers: [PaintingsService, MessageService],
+  providers: [MessageService],
   standalone: true,
   imports: [NgIf, ReactiveFormsModule, InputTextModule, InputTextareaModule, ToastModule, ProgressSpinnerModule]
 })
@@ -29,7 +29,7 @@ export class PaintingNewComponent implements OnInit, OnDestroy {
   public selectedFileMain: File | null = null;
   public selectedFileSecond: File | null = null;
   public selectedFileThird: File | null = null;
-  public loader: boolean = false;
+  public loader = false;
   public isBrowser!: boolean;
 
   private _paintingsService: PaintingsService = inject(PaintingsService);

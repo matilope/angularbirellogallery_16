@@ -17,7 +17,7 @@ import { RouterLink } from '@angular/router';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  providers: [PaintingsService, MessageService],
+  providers: [MessageService],
   standalone: true,
   imports: [NgFor, NgIf, RouterLink, ImgBrokenDirective, ProgressSpinnerModule, FormsModule, InputTextModule, ToastModule]
 })
@@ -29,14 +29,14 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   public subscription3!: Subscription;
   public subscription4!: Subscription;
 
-  public currentPage: number = 1;
+  public currentPage = 1;
   public totalPages!: number;
   @ViewChildren('theLastList') public theLastList!: QueryList<ElementRef>;
 
-  private observer!: IntersectionObserver;;
+  private observer!: IntersectionObserver;
 
-  public loader: boolean = false;
-  public search: string = '';
+  public loader = false;
+  public search = '';
   private search$: Subject<string> = new Subject<string>();
   private destroy$: Subject<void> = new Subject<void>();
   public isBrowser!: boolean;
@@ -80,13 +80,13 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
                 this.paintings = response.paints;
               } else {
                 this._messageService.add({ severity: 'warn', summary: 'Warning', detail: `The search query doesn't have results` });
-                this.resetSearch();
+                this.resetSearch(null);
               }
             },
             error: () => {
               this._messageService.add({ severity: 'error', summary: 'Error', detail: 'The search query failed, error code 500' });
               this.loader = false;
-              this.resetSearch();
+              this.resetSearch(null);
             }
           });
         }
@@ -113,11 +113,13 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     this.search$.next(this.search);
   }
 
-  resetSearch(): void {
-    this.currentPage = 1;
-    this.search = '';
-    this.paintings = [];
-    this.paintingsData();
+  resetSearch(event: any): void {
+    if (event === null || event.key === "Escape" || event.type == "click") {
+      this.currentPage = 1;
+      this.search = '';
+      this.paintings = [];
+      this.paintingsData();
+    }
   }
 
   paintingsData(): void {
@@ -138,7 +140,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   intersectionObserver(): void {
-    let options = {
+    const options = {
       root: null,
       rootMargin: '4px',
       threshold: 1

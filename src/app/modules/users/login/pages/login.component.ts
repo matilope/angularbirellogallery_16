@@ -26,7 +26,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class LoginComponent implements OnDestroy {
   public loginUserData: User;
   public subscription!: Subscription;
-  public loader: boolean = false;
+  public loader = false;
   public isBrowser!: boolean;
 
   private _auth: AuthService = inject(AuthService);

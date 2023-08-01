@@ -6,7 +6,7 @@ import { PaintingObservable } from '@core/models/painting';
 import { PaintingsService } from '@shared/services/paintings.service';
 
 export const PaintingResolve: ResolveFn<PaintingObservable | string> = (route: ActivatedRouteSnapshot) => {
-  let pinturaId = route.params['id'];
+  const pinturaId = route.params['id'];
   return inject(PaintingsService).getPainting(pinturaId)
     .pipe(
       catchError(error => {

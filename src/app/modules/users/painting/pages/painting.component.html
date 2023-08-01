@@ -3,11 +3,11 @@
     <div class="img-section">
       <img appImgBroken [src]="imageSelected" [alt]="painting.title" />
       <div class="img-container">
-        <img (click)="changeImage(0);" [class]="imageSelected === painting.image0url ? 'active' : ''" appImgBroken
+        <img tabindex="0" (click)="changeImage(0);" [class]="imageSelected === painting.image0url ? 'active' : ''" appImgBroken
           *ngIf="painting.image1url || painting.image2url" [src]="painting.image0url" [alt]="painting.title" />
-        <img (click)="changeImage(1);" [class]="imageSelected === painting.image0url ? 'active' : ''"
+        <img tabindex="0" (click)="changeImage(1);" [class]="imageSelected === painting.image0url ? 'active' : ''"
           *ngIf="painting.image1url" [src]="painting.image1url" [alt]="painting.title" />
-        <img (click)="changeImage(2);" [class]="imageSelected === painting.image0url ? 'active' : ''"
+        <img tabindex="0" (click)="changeImage(2);" [class]="imageSelected === painting.image0url ? 'active' : ''"
           *ngIf="painting.image2url" [src]="painting.image2url" [alt]="painting.title" />
       </div>
     </div>

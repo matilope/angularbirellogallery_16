@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Global } from '@global/global';
 import { PaintingsObservable, PaintingObservable } from '@core/models/painting';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class PaintingsService {
   public url: string;
   private _http: HttpClient = inject(HttpClient);
@@ -34,12 +34,12 @@ export class PaintingsService {
   }
 
   delete(id: string): Observable<PaintingObservable> {
-    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this._http.delete<PaintingObservable>(this.url + 'painting/' + id, { headers: headers });
   }
 
   deleteImg(id: string, index: number): Observable<PaintingObservable> {
-    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this._http.post<PaintingObservable>(this.url + 'delete_image', { index, id }, { headers: headers });
   }
 

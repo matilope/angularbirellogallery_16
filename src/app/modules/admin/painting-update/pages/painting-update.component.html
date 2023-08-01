@@ -42,7 +42,7 @@
       <div>
         <ng-container *ngIf="painting.image0url else uploadoption_main">
           <img [src]="painting.image0url" [alt]="painting.title" />
-          <div class="delete-img" (click)="deleteImg(0)"><i class="pi pi-trash"></i></div>
+          <div role="button" tabindex="0" class="delete-img" (click)="deleteImg(0)"><i class="pi pi-trash"></i></div>
         </ng-container>
         <ng-template #uploadoption_main>
           <input type="file" (change)="onFileSelected($event, 0)" id="image0url" name="image0url"
@@ -53,7 +53,7 @@
       <div>
         <ng-container *ngIf="painting.image1url else uploadoption_secondary">
           <img [src]="painting.image1url" [alt]="painting.title" />
-          <div class="delete-img" (click)="deleteImg(1)"><i class="pi pi-trash"></i></div>
+          <div role="button" tabindex="0" class="delete-img" (click)="deleteImg(1)"><i class="pi pi-trash"></i></div>
         </ng-container>
         <ng-template #uploadoption_secondary>
           <input type="file" (change)="onFileSelected($event, 1)" id="image1url" name="image1url" />
@@ -63,7 +63,7 @@
       <div>
         <ng-container *ngIf="painting.image2url else uploadoption_third">
           <img [src]="painting.image2url" [alt]="painting.title" />
-          <div class="delete-img" (click)="deleteImg(2)"><i class="pi pi-trash"></i></div>
+          <div role="button" tabindex="0" class="delete-img" (click)="deleteImg(2)"><i class="pi pi-trash"></i></div>
         </ng-container>
         <ng-template #uploadoption_third>
           <input type="file" (change)="onFileSelected($event, 2)" id="image2url" name="image2url" />

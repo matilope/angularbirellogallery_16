@@ -28,7 +28,7 @@ export class ContactComponent implements OnInit, OnDestroy {
   private subscription!: Subscription;
   private subscription2!: Subscription;
   public titles!: string[];
-  public loader: boolean = false;
+  public loader = false;
   public isBrowser!: boolean;
 
   private _contactService: ContactService = inject(ContactService);

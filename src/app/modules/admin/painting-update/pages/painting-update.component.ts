@@ -19,7 +19,7 @@ import { ImgBrokenDirective } from '@shared/directives/img-broken.directive';
   selector: 'app-painting-update',
   templateUrl: './painting-update.component.html',
   styleUrls: ['./painting-update.component.scss'],
-  providers: [PaintingsService, MessageService, ConfirmationService],
+  providers: [MessageService, ConfirmationService],
   standalone: true,
   imports: [NgIf, ReactiveFormsModule, ImgBrokenDirective, InputTextModule, InputTextareaModule, ToastModule, ProgressSpinnerModule, ConfirmDialogModule]
 })
@@ -33,7 +33,7 @@ export class PaintingUpdateComponent implements OnInit, OnDestroy {
   public selectedFileMain: File | null = null;
   public selectedFileSecond: File | null = null;
   public selectedFileThird: File | null = null;
-  public loader: boolean = false;
+  public loader = false;
   public isBrowser!: boolean;
 
   private _paintingsService: PaintingsService = inject(PaintingsService);

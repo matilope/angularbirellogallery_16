@@ -17,7 +17,7 @@ import { NgIf } from '@angular/common';
   imports: [NgIf, ImgBrokenDirective, AccordionModule]
 })
 export class PaintingComponent implements OnInit, OnDestroy {
-  public jsonLD!: Object;
+  public jsonLD!: object;
   public html!: SafeHtml;
   public painting!: Painting;
   public url: string;

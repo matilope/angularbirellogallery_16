@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, PLATFORM_ID, QueryList, ViewChildren, inject } from '@angular/core';
-import { Instagram } from '@core/models/instagram';
+import { Instagram, InstagramObservable } from '@core/models/instagram';
 import { InstagramService } from '@shared/services/instagram.service';
 import { ActivatedRoute } from '@angular/router';
 import { Meta } from '@angular/platform-browser';
@@ -29,12 +29,10 @@ export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy 
   public url!: string;
   public content!: string;
 
-  @ViewChildren('theLastList', { read: ElementRef })
-  public theLastList!: QueryList<ElementRef>;
+  @ViewChildren('theLastList') public theLastList!: QueryList<ElementRef>;
 
   private observer: IntersectionObserver;
-  public loader: boolean = false;
-  public data: any;
+  public loader = false;
   public isBrowser!: boolean;
 
   private _instagramService: InstagramService = inject(InstagramService);
@@ -89,10 +87,9 @@ export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy 
           this.subscription2 = this._instagramService
             .getInstagram(this.content)
             .subscribe({
-              next: response => {
+              next: (response: InstagramObservable) => {
                 this.loader = false;
                 this.insta = response.data;
-                this.data = response.data;
                 if (response.paging.cursors.after) {
                   this.next = response.paging.cursors.after;
                 }
@@ -116,7 +113,7 @@ export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   intersectionObserver(): void {
-    let options = {
+    const options = {
       root: null,
       rootMargin: '0px',
       threshold: 0
@@ -124,21 +121,18 @@ export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy 
 
     this.observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
-        if (this.data.length > 1) {
+        if (this.insta.length > 1) {
           this.loader = true;
           this.subscription4 = this._instagramService
             .getInstagramNext(this.content, this.next)
             .subscribe({
-              next: (response) => {
+              next: (response: InstagramObservable) => {
                 this.loader = false;
                 if (response.paging) {
                   this.next = response.paging.cursors.after;
-                  this.data = response.data;
-                  response.data.forEach((e: any) => {
+                  response.data.forEach((e: Instagram) => {
                     this.insta.push(e);
                   });
-                } else {
-                  this.data = [];
                 }
               }
             })
