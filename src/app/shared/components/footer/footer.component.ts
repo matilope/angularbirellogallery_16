@@ -8,4 +8,6 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [RouterLink]
 })
-export class FooterComponent { }
+export class FooterComponent {
+  public date: number = new Date().getFullYear();
+}

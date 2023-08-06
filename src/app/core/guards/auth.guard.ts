@@ -13,7 +13,6 @@ export const AuthGuard: CanMatchFn = () => {
       if (response?.code === 200) {
         return of(true);
       } else {
-        router.navigate(['/404']);
         return of(false);
       }
     }),

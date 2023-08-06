@@ -17,7 +17,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
-  providers: [ContactService, MessageService],
+  providers: [MessageService],
   standalone: true,
   imports: [NgIf, ReactiveFormsModule, InputTextModule, InputTextareaModule, DropdownModule, ToastModule, ProgressSpinnerModule]
 })

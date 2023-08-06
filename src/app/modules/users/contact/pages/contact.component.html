@@ -27,7 +27,7 @@
       <textarea name="textarea" id="textarea" rows="4" formControlName="textarea" pInputTextarea required></textarea>
       <label for="textarea">Message *</label>
     </span>
-    <button type="submit" class="custom-btn" [disabled]="formGroup.invalid" pRipple>
+    <button [disabled]="loader" type="submit" class="custom-btn" [disabled]="formGroup.invalid" pRipple>
       Submit
       <p-progressSpinner *ngIf="loader" class="custom-spinner" strokeWidth="6"
         styleClass="custom-spinner"></p-progressSpinner>
