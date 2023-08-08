@@ -18,7 +18,7 @@
       </span>
     </div>
   </div>
-  <div class="flex">
+  <div class="grid">
     <a class="card" *ngFor="let painting of paintings; let last = last; trackBy: trackByFn"
       [routerLink]="['/painting/view/', painting._id]">
       <img appImgBroken [src]="painting.image0url" [alt]="painting.title" />
