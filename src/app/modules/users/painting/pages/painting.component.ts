@@ -8,13 +8,14 @@ import { Subscription } from 'rxjs';
 import { ImgBrokenDirective } from '@shared/directives/img-broken.directive';
 import { AccordionModule } from 'primeng/accordion';
 import { NgIf } from '@angular/common';
+import { FormatterPipe } from '@shared/pipes/formatter.pipe';
 
 @Component({
   selector: 'app-painting',
   templateUrl: './painting.component.html',
   styleUrls: ['./painting.component.scss'],
   standalone: true,
-  imports: [NgIf, ImgBrokenDirective, AccordionModule]
+  imports: [NgIf, ImgBrokenDirective, AccordionModule, FormatterPipe]
 })
 export class PaintingComponent implements OnInit, OnDestroy {
   public jsonLD!: object;

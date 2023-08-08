@@ -3,8 +3,9 @@
     <div class="img-section">
       <img appImgBroken [src]="imageSelected" [alt]="painting.title" />
       <div class="img-container">
-        <img tabindex="0" (click)="changeImage(0);" [class]="imageSelected === painting.image0url ? 'active' : ''" appImgBroken
-          *ngIf="painting.image1url || painting.image2url" [src]="painting.image0url" [alt]="painting.title" />
+        <img tabindex="0" (click)="changeImage(0);" [class]="imageSelected === painting.image0url ? 'active' : ''"
+          appImgBroken *ngIf="painting.image1url || painting.image2url" [src]="painting.image0url"
+          [alt]="painting.title" />
         <img tabindex="0" (click)="changeImage(1);" [class]="imageSelected === painting.image0url ? 'active' : ''"
           *ngIf="painting.image1url" [src]="painting.image1url" [alt]="painting.title" />
         <img tabindex="0" (click)="changeImage(2);" [class]="imageSelected === painting.image0url ? 'active' : ''"
@@ -39,13 +40,13 @@
         </p-accordion>
         <p-accordion class="custom-accordion">
           <p-accordionTab header="Description">
-            <p class="description">
-              {{painting.description}}
+            <p class="description" [innerHTML]="painting.description | formatter">
             </p>
           </p-accordionTab>
         </p-accordion>
       </div>
-      <a target="_blank" [href]="'https://wa.me/5491164816622?text=Hi,%20Im%20interested%20in%20' + painting.title" class="custom-btn">Enquire</a>
+      <a target="_blank" [href]="'https://wa.me/5491164816622?text=Hi,%20Im%20interested%20in%20' + painting.title"
+        class="custom-btn">Enquire</a>
     </div>
   </div>
 </section>
