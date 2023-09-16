@@ -40,7 +40,7 @@ export class PaintingComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription2 = this.activatedRoute.data.subscribe({
-      next: (response: any) => {
+      next: (response) => {
         if (response.painting.paint) {
           this.painting = response.painting.paint;
           this.imageSelected = this.painting.image0url;

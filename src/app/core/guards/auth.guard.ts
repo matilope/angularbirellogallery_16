@@ -1,11 +1,12 @@
 import { CanMatchFn } from '@angular/router';
-import { AuthService } from '@shared/services/auth.service';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, map, of, switchMap } from 'rxjs';
-import { Validation } from '@core/models/validation';
+import { environment } from 'src/environments/environment';
+import { AuthService } from '@shared/services/auth.service';
+import decode from 'jwt-decode';
 
 export const AuthGuard: CanMatchFn = () => {
+  /*
   const router = inject(Router);
   const _authService = inject(AuthService);
   return _authService.loggedIn().pipe(
@@ -28,4 +29,18 @@ export const AuthGuard: CanMatchFn = () => {
       return allowed;
     })
   );
+  */
+  const _router = inject(Router);
+  const _authService = inject(AuthService);
+  const token = _authService.getToken();
+  if (!token) {
+    _router.navigate(['/404']);
+    return false;
+  }
+  const tokenPayload: any = decode(token);
+  if (tokenPayload?.subject !== environment?.payload) {
+    _router.navigate(['/404']);
+    return false;
+  }
+  return true;
 }

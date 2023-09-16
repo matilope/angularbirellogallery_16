@@ -3,10 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  token: 'token_birello_gallery_admin',
-  backUrl: 'https://backbirellogallery.vercel.app/api/'
+  production: true,
+  token: '',
+  payload: '',
+  backUrl: ''
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file
