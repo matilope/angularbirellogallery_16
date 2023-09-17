@@ -137,37 +137,9 @@ export class TermsofserviceComponent {
         'ignaciobirello@hotmail.com'
       ),
     ];
-    this.metaService.updateTag({
-      name: 'title',
-      content: 'Terms Of Service',
-    });
-    this.metaService.updateTag({
-      name: 'description',
-      content: 'Read our terms of service',
-    });
-    this.metaService.updateTag({
-      property: 'og:title',
-      content: 'Terms Of Service',
-    });
-    this.metaService.updateTag({
-      property: 'og:description',
-      content: 'Read our terms of service',
-    });
-    this.metaService.updateTag({
-      property: 'og:url',
-      content: 'https://www.birellogallery.com/termsofservice',
-    });
-    this.metaService.updateTag({
-      property: 'twitter:title',
-      content: 'Terms Of Service',
-    });
-    this.metaService.updateTag({
-      property: 'twitter:description',
-      content: 'Read our terms of service',
-    });
-    this.metaService.updateTag({
-      property: 'twitter:url',
-      content: 'https://www.birellogallery.com/termsofservice',
+    this.metaService.addTag({
+      name: 'robots',
+      content: 'noindex, nofollow',
     });
   }
 }

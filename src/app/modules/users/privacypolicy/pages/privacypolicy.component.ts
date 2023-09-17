@@ -56,37 +56,9 @@ export class PrivacypolicyComponent {
         'We reserve the right to modify this privacy policy at any time, so please review it frequently. Changes and clarifications will take effect immediately upon their posting on the website. If we make material changes to this policy, we will notify you here that it has been updated, so that you are aware of what information we collect, how we use it, and under what circumstances, if any, we use and/or disclose it. If our store is acquired or merged with another company, your information may be transferred to the new owners so that we may continue to sell products to you.'
       ),
     ];
-    this.metaService.updateTag({
-      name: 'title',
-      content: 'Birello Gallery | Privacy Policy',
-    });
-    this.metaService.updateTag({
-      name: 'description',
-      content: 'Read our privacy policy',
-    });
-    this.metaService.updateTag({
-      property: 'og:title',
-      content: 'Birello Gallery | Privacy Policy',
-    });
-    this.metaService.updateTag({
-      property: 'og:description',
-      content: 'Read our privacy policy',
-    });
-    this.metaService.updateTag({
-      property: 'og:url',
-      content: 'https://www.birellogallery.com/privacypolicy',
-    });
-    this.metaService.updateTag({
-      property: 'twitter:title',
-      content: 'Birello Gallery | Privacy policy',
-    });
-    this.metaService.updateTag({
-      property: 'twitter:description',
-      content: 'Read our privacy policy',
-    });
-    this.metaService.updateTag({
-      property: 'twitter:url',
-      content: 'https://www.birellogallery.com/privacypolicy',
+    this.metaService.addTag({
+      name: 'robots',
+      content: 'noindex, nofollow',
     });
   }
 }
